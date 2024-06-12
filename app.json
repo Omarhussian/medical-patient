@@ -2,6 +2,7 @@
   "expo": {
     "name": "medical-patient",
     "slug": "medical-patient",
+    "entryPoint": "./app/_layout.tsx",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -31,6 +32,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2bfc9ac0-52e3-475f-836f-13f1acbc2f97"
+      }
+    },
+    "owner": "razz23"
   }
 }
