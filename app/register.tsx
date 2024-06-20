@@ -7,7 +7,7 @@ const Register = () => {
 
   const handleNext = () => {
     console.log('Next button pressed');
-    // Add your navigation or submission logic here
+    router.push('personal')
   };
 
   return (
