@@ -7,38 +7,25 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-
-const Card = ({ title, onPress }:any) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
+import { Link, useRouter } from "expo-router";
+const Card = ({ title, to }:any) => (
+  <Link href={to} style={styles.card}>
     <ThemedText style={styles.cardText}>{title}</ThemedText>
-  </TouchableOpacity>
+  </Link>
 );
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-
+  const router = useRouter
   return (
     <ThemedView style={styles.container}>
-      <View style={styles.cardsContainer}>
-        <Card title="Clinics" 
-        // onPress={() => navigation.navigate("Clinics")} 
-        />
-        <Card
-          title="Pharmacies"
-          // onPress={}
-        />
-        <Card title="Labs" 
-        // onPress={() => navigation.navigate("Labs")}
-         />
-        <Card
-          title="Scan Centers"
-          // onPress={() => navigation.navigate("ScanCenters")}
-        />
-      </View>
+    <View style={styles.cardsContainer}>
+          <Card title="Clinics" to="/clinics" />
+          <Card title="Pharmacies" to="/pharmacies" />
+          <Card title="Labs" to="/labs" />
+          <Card title="Scan Centers" to="/scanCenters" />
+        </View>
     </ThemedView>
   );
 }
@@ -72,14 +59,17 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 20,
     marginVertical: 10,
-    backgroundColor: "#fff",
-    borderRadius: 10,
+    backgroundColor: "#f9f9f9",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ddd",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
   },
   cardText: {
     fontSize: 18,
@@ -90,3 +80,4 @@ const styles = StyleSheet.create({
     height: 300,
   },
 });
+
