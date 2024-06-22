@@ -17,7 +17,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
     <View style={styles.cardsContainer}>
-          <Card title="Clinics" to="/clinics" />
+          <Card title="Clinics" to="../Clincs" />
           <Card title="Pharmacies" to="/pharmacies" />
           <Card title="Labs" to="/labs" />
           <Card title="Scan Centers" to="/scanCenters" />
