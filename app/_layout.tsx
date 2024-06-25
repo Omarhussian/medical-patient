@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { ClinicProvider } from "@/context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,6 +33,7 @@ export default function RootLayout() {
   }
 
   return (
+    <ClinicProvider>
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack screenOptions={{
         headerShown:false,
@@ -39,5 +41,7 @@ export default function RootLayout() {
         <Stack.Screen name="index"  options={{ headerShown: false , headerTitle:'Login' }} />
       </Stack>
      </ThemeProvider>
+     </ClinicProvider>
   );
 }
+

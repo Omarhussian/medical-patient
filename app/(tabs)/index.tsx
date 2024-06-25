@@ -6,22 +6,36 @@ import {
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link, useRouter } from "expo-router";
-const Card = ({ title, to }:any) => (
+import Animated, { FadeIn } from 'react-native-reanimated';
+
+const Card = ({ title, to }: any) => (
   <Link href={to} style={styles.card}>
     <ThemedText style={styles.cardText}>{title}</ThemedText>
   </Link>
 );
 
 export default function HomeScreen() {
-  const router = useRouter
+  const router = useRouter();
   return (
     <ThemedView style={styles.container}>
-    <View style={styles.cardsContainer}>
-          <Card title="Clinics" to="../Clincs" />
-          <Card title="Pharmacies" to="/pharmacies" />
-          <Card title="Labs" to="/labs" />
-          <Card title="Scan Centers" to="/scanCenters" />
+      <View style={styles.cardsContainer}>
+        <View style={styles.row}>
+          <Animated.View entering={FadeIn} style={styles.cardWrapper}>
+            <Card title="Clinics" to="../(clincs)" />
+          </Animated.View>
+          <Animated.View entering={FadeIn} style={styles.cardWrapper}>
+            <Card title="Pharmacies" to="/pharmacies" />
+          </Animated.View>
         </View>
+        <View style={styles.row}>
+          <Animated.View entering={FadeIn} style={styles.cardWrapper}>
+            <Card title="Labs" to="/labs" />
+          </Animated.View>
+          <Animated.View entering={FadeIn} style={styles.cardWrapper}>
+            <Card title="Scan Centers" to="/scanCenters" />
+          </Animated.View>
+        </View>
+      </View>
     </ThemedView>
   );
 }
@@ -30,31 +44,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-  },
-  headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
-  },
-  logo: {
-    height: 100,
-    width: 100,
-    marginRight: 16,
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
+    alignItems: "center",
   },
   cardsContainer: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  row: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cardWrapper: {
+    width: "45%",
+    margin: 10,
+  },
   card: {
-    width: "80%",
+    aspectRatio: 1,
     padding: 20,
-    marginVertical: 10,
     backgroundColor: "#f9f9f9",
     borderRadius: 8,
     borderWidth: 1,
@@ -71,9 +79,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  headerImage: {
-    width: "100%",
-    height: 300,
-  },
 });
-
