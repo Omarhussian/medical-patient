@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Image, TextInput, TouchableOpacity, Dimensions, Modal, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TextInput, TouchableOpacity, Dimensions, Button } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-
 import { router } from 'expo-router';
 
-const clinics = [
+interface Clinic {
+  id: string;
+  logo: string;
+  name: string;
+  specialty: string;
+  address: string;
+  district: string;
+  fees: string;
+  offering: string;
+}
+
+const clinics: Clinic[] = [
   {
     id: '1',
     logo: 'https://via.placeholder.com/50',
@@ -25,15 +35,18 @@ const clinics = [
     fees: '$150',
     offering: 'Skin Care, Laser'
   },
-  
 ];
 
-const ClinicCard = ({ clinic }: any) => (
+interface ClinicCardProps {
+  clinic: Clinic;
+}
+
+const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => (
   <TouchableOpacity 
     style={styles.clinicCard} 
     onPress={() => router.push({
       pathname: '/ClincDetails',
-      params: { clinic }
+      params: { clinic: JSON.stringify(clinic) }
     })}
   >
     <Image source={{ uri: clinic.logo }} style={styles.clinicLogo} />
@@ -47,14 +60,11 @@ const ClinicCard = ({ clinic }: any) => (
   </TouchableOpacity>
 );
 
-
-
-
-const ClinicsScreen = () => {
-  const [selectedSort, setSelectedSort] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('');
-  const [showSortPicker, setShowSortPicker] = useState(false);
-  const [showFilterPicker, setShowFilterPicker] = useState(false);
+const ClinicsScreen: React.FC = () => {
+  const [selectedSort, setSelectedSort] = useState<string>('');
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
+  const [showSortPicker, setShowSortPicker] = useState<boolean>(false);
+  const [showFilterPicker, setShowFilterPicker] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -82,7 +92,7 @@ const ClinicsScreen = () => {
             <Picker
               selectedValue={selectedSort}
               style={styles.picker}
-              onValueChange={(itemValue:any) => {
+              onValueChange={(itemValue: string) => {
                 setSelectedSort(itemValue);
                 setShowSortPicker(false);
               }}
@@ -100,7 +110,7 @@ const ClinicsScreen = () => {
             <Picker
               selectedValue={selectedFilter}
               style={styles.picker}
-              onValueChange={(itemValue:any) => {
+              onValueChange={(itemValue: string) => {
                 setSelectedFilter(itemValue);
                 setShowFilterPicker(false);
               }}
@@ -117,11 +127,9 @@ const ClinicsScreen = () => {
   );
 };
 
-
-
 export default ClinicsScreen;
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 const clinicCardHeight = height / 3;
 
 const styles = StyleSheet.create({
@@ -136,11 +144,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   pickerWrapper: {
-    // backgroundColor:"#fff",
     borderRadius: 8,
     padding: 16,
     width: '80%',
-    height:"auto"
+    height: 'auto',
   },
   pickerContainer: {
     flex: 1,
@@ -152,13 +159,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
- 
   container: {
     flex: 1,
     padding: 16,
@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 16,
   },
-
   listContainer: {
     paddingBottom: 16,
   },
