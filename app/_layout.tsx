@@ -38,7 +38,7 @@ export default function RootLayout() {
       <Stack screenOptions={{
         headerShown:false,
       }}>
-        <Stack.Screen name="index"  options={{ headerShown: false , headerTitle:'Login' }} />
+        <Stack.Screen name="login"  options={{ headerShown: false , headerTitle:'Login' }} />
       </Stack>
      </ThemeProvider>
      </ClinicProvider>
