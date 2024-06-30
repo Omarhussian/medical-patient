@@ -71,11 +71,11 @@ const ClinicsScreen: React.FC = () => {
       <TextInput style={styles.searchBar} placeholder="Search" />
       <View style={styles.buttonsContainer}>
         <View style={styles.pickerContainer}>
-          <Text>Sort:</Text>
+          {/* <Text>Sort:</Text> */}
           <Button title="Select Sort" onPress={() => setShowSortPicker(!showSortPicker)} />
         </View>
         <View style={styles.pickerContainer}>
-          <Text>Filter:</Text>
+          {/* <Text>Filter:</Text> */}
           <Button title="Select Filter" onPress={() => setShowFilterPicker(!showFilterPicker)} />
         </View>
       </View>
@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Darker overlay for better visibility
   },
   pickerWrapper: {
+    backgroundColor: '#fff', // Added background color for picker wrapper
     borderRadius: 8,
     padding: 16,
     width: '80%',
-    height: 'auto',
   },
   pickerContainer: {
     flex: 1,

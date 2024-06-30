@@ -1,16 +1,29 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'expo-router';
-type RootStackParamList = {
-  Login: undefined;
- 
-};
+
 const More = () => {
   const router = useRouter();
   
+  const [visits, setVisits] = useState(0);
+  const [purchases, setPurchases] = useState(0);
+  const [payments, setPayments] = useState(0);
+
+  useEffect(() => {
+    const targetVisits = 10;
+    const targetPurchases = 5;
+    const targetPayments = 3;
+
+    const interval = setInterval(() => {
+      setVisits(prev => (prev < targetVisits ? prev + 1 : prev));
+      setPurchases(prev => (prev < targetPurchases ? prev + 1 : prev));
+      setPayments(prev => (prev < targetPayments ? prev + 1 : prev));
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleLogout = () => {
-    // going to the login page
     router.push('../../');
   };
 
@@ -19,19 +32,18 @@ const More = () => {
       <View style={styles.header}>
         <Text style={styles.headerText}>patient full name</Text>
         <TouchableOpacity style={styles.settingsIcon}>
-          {/* Add your settings icon here */}
           <Text>⚙️</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>My Visits</Text>
+          <Text style={styles.buttonText}>My Visits: {visits}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>My Purchases</Text>
+          <Text style={styles.buttonText}>My Purchases: {purchases}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>My Payments</Text>
+          <Text style={styles.buttonText}>My Payments: {payments}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.linksContainer}>
@@ -55,6 +67,8 @@ const More = () => {
   )
 }
 export default More
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -81,19 +95,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  button: {
+ button: {
     flex: 1,
     marginHorizontal: 5,
     padding: 15,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#007BFF', // Changed background color to match the styles
     alignItems: 'center',
     borderRadius: 5,
+    justifyContent: 'center', // Center content vertically
   },
   buttonText: {
     fontSize: 16,
     textAlign: 'center',
-    flexWrap: 'nowrap', 
-    
+    color: '#fff', // Changed text color to white
   },
   linksContainer: {
     marginBottom: 20,
