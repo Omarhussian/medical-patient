@@ -24,12 +24,12 @@ export default function HomeScreen() {
             <Card title="Clinics" to="../(clincs)" />
           </Animated.View>
           <Animated.View entering={FadeIn} style={styles.cardWrapper}>
-            <Card title="Pharmacies" to="/pharmacies" />
+            <Card title="Pharmacies" to="../(pharmacies)/Pharmacies" />
           </Animated.View>
         </View>
         <View style={styles.row}>
           <Animated.View entering={FadeIn} style={styles.cardWrapper}>
-            <Card title="Labs" to="/labs" />
+            <Card title="Labs" to="../(labs)/Labs" />
           </Animated.View>
           <Animated.View entering={FadeIn} style={styles.cardWrapper}>
             <Card title="Scan Centers" to="/scanCenters" />
