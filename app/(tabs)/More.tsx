@@ -47,6 +47,9 @@ const More = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.linksContainer}>
+        <TouchableOpacity style={styles.link} onPress={() => router.push('../../')}>
+          <Text style={styles.linkText}>Patient ID</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.link}>
           <Text style={styles.linkText}>Settings</Text>
         </TouchableOpacity>
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     backgroundColor: '#fff',
-    justifyContent: 'space-between', // Added to space out content
+    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',

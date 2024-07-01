@@ -42,10 +42,10 @@ const Login = () => {
         Lorem ipsum dolor sit amet consectetur. Quis enim diam massa commodo tristique.
       </Text>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email</Text>
+        <Text style={styles.label}>Phone Number</Text>
         <TextInput
           style={styles.input}
-          placeholder="E,g: yourname@lnkr.com"
+          placeholder="Phone number"
           value={username}
           onChangeText={(text) => setUsername(text)}
         />
